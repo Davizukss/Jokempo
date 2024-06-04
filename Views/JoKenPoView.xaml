@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PedraPapelETesoura.ViewModels"
+             x:Class="PedraPapelETesoura.Views.JoKenPoView"
+             Title="Pedra Papel e Tesoura">
+
+    <ContentPage.BindingContext>
+        <vm:JokenPoViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="30" Padding="20">
+            <FlexLayout AlignContent="Center">
+                <Label Text="Digite seu nome" FlexLayout.AlignSelf="Center"/>
+                <Entry MinimumWidthRequest="100" Placeholder="Digite seu nome" Text="{Binding PlayerName}" HorizontalOptions="FillAndExpand"/>
+            </FlexLayout>
+
+            <Picker Title="Selecione uma opção" SelectedItem="{Binding Escolha}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>PEDRA</x:String>
+                        <x:String>PAPEL</x:String>
+                        <x:String>TESOURA</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Button Text="Jogar" Command="{Binding MakeChoiceCommand}" CommandParameter="{Binding Escolha}" />
+
+            <BoxView HeightRequest="2" HorizontalOptions="Fill" />
+
+            <Label Text="{Binding Result}" FontSize="18" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+            <Label Text="Pontuação Jogador:" FontSize="18" />
+            <Label Text="{Binding Player.Pontuacao}" FontSize="18" />
+
+            <Label Text="Pontuação Máquina:" FontSize="18" />
+            <Label Text="{Binding Robo.Pontuacao}" FontSize="18" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
